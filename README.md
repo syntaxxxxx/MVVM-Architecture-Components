@@ -19,7 +19,7 @@ This repository can be used as a reference for learning the online course platfo
 7. Repository Pattern
 8. Unit Test
 
-- MVP Approach`(branch:mvp)`
+- MVP Approach`(branch:master)`
 1. RxJava2
 2. Dagger2
 3. Anko Sqlite
