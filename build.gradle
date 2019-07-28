@@ -5,6 +5,8 @@ buildscript {
     ext.anko_version = '0.10.8'
     ext.glide_version = '4.9.0'
     ext.retrofit_version = '2.5.0'
+    ext.architecture_version = '2.2.0-alpha02'
+
     repositories {
         google()
         jcenter()
