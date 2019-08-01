@@ -1,6 +1,6 @@
 # MVVM-Architecture-Components
 
-This repository is Final Project for student IDN Academy Android program
+This repository is Final Project for student Android Developer of IDN Academy : https://academy.idn.id/
 
 # Tech Stack
 
