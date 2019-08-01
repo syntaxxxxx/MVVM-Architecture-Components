@@ -1,10 +1,6 @@
 # MVVM-Architecture-Components
 
-This repository can be used as a reference for learning the online course platform Dicoding in class:
-
-- Menjadi Android Developer Expert(MADE) https://www.dicoding.com/academies/14
-- Kotlin Android Developer Expert(KADE) https://www.dicoding.com/academies/55
-- Belajar Android Jetpack Pro(BAJP) https://www.dicoding.com/academies/129
+This repository is Final Project for student IDN Academy Android program
 
 # Tech Stack
 
