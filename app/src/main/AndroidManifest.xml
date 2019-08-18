@@ -5,6 +5,7 @@
 
     <dist:module dist:instant="true"/>
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -12,7 +13,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".utama.detail.DetailMovies">
+        <activity android:name=".utama.detail.Detail">
         </activity>
         <activity android:name=".utama.MainActivity">
             <intent-filter>
