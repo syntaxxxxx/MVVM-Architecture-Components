@@ -28,7 +28,7 @@ abstract class BaseFragment<out P : BasePresenter<*>> : Fragment(), BaseContract
 
     override fun onDestroyView() {
         super.onDestroyView()
-        presenter.onDettach()
+        presenter.onDettachView()
     }
 
     override fun onSuccess(msg: String?) {

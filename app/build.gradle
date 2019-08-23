@@ -13,6 +13,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "API_KEY", "\"0ccacd153a886bf94d2513f729f49663\""
+        buildConfigField "String", "LANGUAGE", "\"en-US\""
+        buildConfigField "String", "IMAGES", "\"http://image.tmdb.org/t/p/w185/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
