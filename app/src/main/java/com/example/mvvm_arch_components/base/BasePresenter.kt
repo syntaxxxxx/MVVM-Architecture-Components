@@ -19,10 +19,12 @@ open class BasePresenter<V : BaseContract.BaseView> : BaseContract.BasePresenter
     }
 
     override fun onFinish() {
+        view().onHideLoading()
     }
 
-    override fun catchError(error: Throwable) = try {
-        Log.e("TAG", error.message)
+    override fun catchError(error: Throwable?) = try {
+        Log.e("TAG", error?.message!!)
+        view().onHideLoading()
         when (error) {
             is HttpException -> view().onError(error.message())
             is SocketTimeoutException -> view().onError(error.message)
