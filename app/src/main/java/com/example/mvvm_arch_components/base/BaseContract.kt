@@ -14,8 +14,8 @@ interface BaseContract {
     }
 
     interface BaseView {
-        fun onSuccess(msg: String?)
-        fun onSuccess(@StringRes resId: Int)
+        fun onShowLoading(msg: String?)
+        fun onShowLoading(@StringRes resId: Int)
         fun onError(msg: String?)
         fun onError(@StringRes resId: Int)
     }

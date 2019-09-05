@@ -26,10 +26,10 @@ abstract class BaseActivity<out P : BasePresenter<*>> : AppCompatActivity(), Bas
         presenter.onDettachView()
     }
 
-    override fun onSuccess(msg: String?) {
+    override fun onShowLoading(msg: String?) {
     }
 
-    override fun onSuccess(resId: Int) {
+    override fun onShowLoading(resId: Int) {
 
     }
 
