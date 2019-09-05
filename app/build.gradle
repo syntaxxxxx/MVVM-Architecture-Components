@@ -59,4 +59,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
+    // add library mockito local unit testing
+    implementation "org.mockito:mockito-inline:$mockito"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockKotlin"
+    testImplementation "de.jodamob.kotlin:kotlin-runner-junit4:$mockRunner"
 }

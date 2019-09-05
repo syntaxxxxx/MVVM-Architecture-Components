@@ -5,6 +5,9 @@ buildscript {
     ext.anko_version = '0.10.8'
     ext.glide_version = '4.9.0'
     ext.retrofit_version = '2.5.0'
+    ext.mockito = '2.8.47'
+    ext.mockKotlin = '2.1.0'
+    ext.mockRunner = '0.3.1'
     repositories {
         google()
         jcenter()
