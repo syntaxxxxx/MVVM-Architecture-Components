@@ -3,9 +3,7 @@ package com.example.mvvm_arch_components.network
 import com.example.mvvm_arch_components.BuildConfig
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

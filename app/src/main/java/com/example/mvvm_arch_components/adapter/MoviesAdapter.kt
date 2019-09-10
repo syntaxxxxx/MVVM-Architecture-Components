@@ -12,16 +12,16 @@ import com.example.mvvm_arch_components.utils.view.inflate
 import com.example.mvvm_arch_components.utils.view.onClicked
 import kotlinx.android.synthetic.main.item_movies.view.*
 
-class MyAdapter(private val context: Context? = null, private val list: List<Movies>) :
-    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MoviesAdapter(private val context: Context? = null, private val list: List<Movies>) :
+    RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.ViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesAdapter.ViewHolder
     = ViewHolder(parent.inflate(R.layout.item_movies))
 
     @Suppress("USELESS_ELVIS")
     override fun getItemCount(): Int = list.size ?: 0
 
-    override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MoviesAdapter.ViewHolder, position: Int) {
         holder.bindItem(list.get(position))
     }
 

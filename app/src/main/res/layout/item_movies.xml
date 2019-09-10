@@ -2,7 +2,6 @@
 
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="160dp">
@@ -21,7 +20,6 @@
 
         <TextView
                 android:id="@+id/tv_title"
-                tools:text="Title Movie"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:maxLines="2"
@@ -33,7 +31,6 @@
                 android:id="@+id/tv_popularity"
                 android:maxLines="5"
                 android:layout_marginTop="5dp"
-                android:text="Popularity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -41,7 +38,6 @@
                 android:maxLines="5"
                 android:layout_marginTop="5dp"
                 android:id="@+id/tv_release"
-                android:text="Tanggal Release"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
