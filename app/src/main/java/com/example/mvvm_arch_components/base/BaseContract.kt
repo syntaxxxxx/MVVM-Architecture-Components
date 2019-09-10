@@ -10,12 +10,12 @@ interface BaseContract {
         fun onDettachView()
         fun view(): V
         fun onFinish()
-        fun catchError(error: Throwable)
+        fun catchError(error: Throwable?)
     }
 
     interface BaseView {
-        fun onShowLoading(msg: String?)
-        fun onShowLoading(@StringRes resId: Int)
+        fun onShowLoading()
+        fun onHideLoading()
         fun onError(msg: String?)
         fun onError(@StringRes resId: Int)
     }

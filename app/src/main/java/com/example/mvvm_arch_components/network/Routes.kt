@@ -1,9 +1,8 @@
 package com.example.mvvm_arch_components.network
 
-import com.example.mvvm_arch_components.data.model.ResponseMovies
-import com.example.mvvm_arch_components.data.model.ResponseTv
+import com.example.mvvm_arch_components.data.entity.ResponseMovies
+import com.example.mvvm_arch_components.data.entity.ResponseTv
 import io.reactivex.Flowable
-import org.intellij.lang.annotations.Flow
 import retrofit2.http.GET
 
 interface Routes {

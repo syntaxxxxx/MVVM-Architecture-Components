@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+    <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="120dp"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"/>
+
+    <LinearLayout
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/tv_title"
+                tools:text="Title Movie"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/tv_popularity"
+                android:maxLines="5"
+                android:layout_marginTop="5dp"
+                android:text="Popularity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:maxLines="5"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tv_release"
+                android:text="Tanggal Release"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</LinearLayout>

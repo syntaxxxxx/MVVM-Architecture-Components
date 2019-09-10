@@ -2,7 +2,9 @@ package com.example.mvvm_arch_components.base
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import org.jetbrains.anko.toast
 
 abstract class BaseActivity<out P : BasePresenter<*>> : AppCompatActivity(), BaseContract.BaseView {
 
@@ -26,11 +28,12 @@ abstract class BaseActivity<out P : BasePresenter<*>> : AppCompatActivity(), Bas
         presenter.onDettachView()
     }
 
-    override fun onShowLoading(msg: String?) {
+    override fun onShowLoading() {
+        Log.d("TAG", "show loading !")
     }
 
-    override fun onShowLoading(resId: Int) {
-
+    override fun onHideLoading() {
+        Log.d("TAG", "hide loading !")
     }
 
     override fun onError(msg: String?) {
