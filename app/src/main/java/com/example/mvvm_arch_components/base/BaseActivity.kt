@@ -13,11 +13,9 @@ abstract class BaseActivity<out P : BasePresenter<*>> : AppCompatActivity(), Bas
     protected abstract fun setContentView(): Int
     protected abstract fun onCreated()
 
-    protected lateinit var savedInstanceState: Bundle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.savedInstanceState = savedInstanceState!!
         setContentView(setContentView())
         presenter = presenter()
         onCreated()
@@ -34,6 +32,10 @@ abstract class BaseActivity<out P : BasePresenter<*>> : AppCompatActivity(), Bas
 
     override fun onHideLoading() {
         Log.d("TAG", "hide loading !")
+    }
+
+    override fun onSuccess(string: String) {
+        toast(string)
     }
 
     override fun onError(msg: String?) {

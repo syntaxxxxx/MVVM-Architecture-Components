@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.jetbrains.anko.toast
 
 abstract class BaseFragment<out P : BasePresenter<*>> : Fragment(), BaseContract.BaseView {
 
@@ -35,6 +36,10 @@ abstract class BaseFragment<out P : BasePresenter<*>> : Fragment(), BaseContract
 
     override fun onHideLoading() {
         Log.d("TAG", "hide loading !")
+    }
+
+    override fun onSuccess(string: String) {
+        context()?.toast(string)
     }
 
     override fun onError(msg: String?) {

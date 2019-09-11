@@ -15,7 +15,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".utama.detail.Detail">
+        <activity android:name=".utama.detail.Detail"
+        android:parentActivityName=".utama.MainActivity">
         </activity>
         <activity android:name=".utama.MainActivity">
             <intent-filter>

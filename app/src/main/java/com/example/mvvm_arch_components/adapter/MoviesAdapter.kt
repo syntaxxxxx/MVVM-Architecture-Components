@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_arch_components.BuildConfig
 import com.example.mvvm_arch_components.R
 import com.example.mvvm_arch_components.data.entity.Movies
+import com.example.mvvm_arch_components.utama.detail.Detail
 import com.example.mvvm_arch_components.utils.view.displayImageOriginal
 import com.example.mvvm_arch_components.utils.view.inflate
 import com.example.mvvm_arch_components.utils.view.onClicked
 import kotlinx.android.synthetic.main.item_movies.view.*
+import org.jetbrains.anko.startActivity
 
 class MoviesAdapter(private val context: Context? = null, private val list: List<Movies>) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
@@ -36,7 +38,7 @@ class MoviesAdapter(private val context: Context? = null, private val list: List
             itemView.tv_release.text = data?.releaseDate
             displayImageOriginal(context!!, itemView.iv_poster, BuildConfig.IMAGES + data?.posterPath)
             itemView.onClicked {
-
+                itemView.context.startActivity<Detail>("movies" to movies)
             }
         }
     }

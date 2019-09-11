@@ -12,7 +12,6 @@ import com.example.mvvm_arch_components.data.entity.Tv
 import com.example.mvvm_arch_components.data.repository.TvRepositoryImpl
 import com.example.mvvm_arch_components.network.Network
 import com.example.mvvm_arch_components.utils.rx.AppSchedulerProvider
-import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 
 
