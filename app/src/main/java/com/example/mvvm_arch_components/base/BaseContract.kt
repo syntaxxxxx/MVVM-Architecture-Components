@@ -1,11 +1,10 @@
 package com.example.mvvm_arch_components.base
 
-import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 
 interface BaseContract {
 
-    interface BasePresenter<V> {
+    interface BasePresenter<V : BaseContract.BaseView> {
         fun onAttachView(view: V?)
         fun onDettachView()
         fun view(): V
