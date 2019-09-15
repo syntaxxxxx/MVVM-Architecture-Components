@@ -6,24 +6,17 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.toast
 
-abstract class BaseActivity<out P : BasePresenter<*>> : AppCompatActivity(), BaseContract.BaseView {
+abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
 
-    private lateinit var presenter: P
-    protected abstract fun presenter(): P
     protected abstract fun setContentView(): Int
+    protected abstract fun initInjector()
     protected abstract fun onCreated()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(setContentView())
-        presenter = presenter()
+        initInjector()
         onCreated()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDettachView()
     }
 
     override fun onShowLoading() {

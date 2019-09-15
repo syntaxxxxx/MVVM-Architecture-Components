@@ -3,15 +3,11 @@ package com.example.mvvm_arch_components.utama.detail
 import android.content.Context
 import com.example.mvvm_arch_components.base.BasePresenter
 import com.example.mvvm_arch_components.data.entity.Movies
+import javax.inject.Inject
 
-class DetailPresenter(
-    view: DetailContract.DetailView,
+class DetailPresenter @Inject constructor(
     private val useCase: DetailUseCase
 ) : BasePresenter<DetailContract.DetailView>(), DetailContract.DetailPresenter {
-
-    init {
-        super.onAttachView(view)
-    }
 
     override fun like(context: Context, movies: Movies) {
         useCase.like(context, movies)

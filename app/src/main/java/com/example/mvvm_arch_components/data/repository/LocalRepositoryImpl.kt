@@ -9,9 +9,10 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.select
+import javax.inject.Inject
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class LocalRepositoryImpl : LocalRepository {
+class LocalRepositoryImpl @Inject constructor() : LocalRepository {
 
     override fun like(context: Context, movies: Movies) {
         try {
