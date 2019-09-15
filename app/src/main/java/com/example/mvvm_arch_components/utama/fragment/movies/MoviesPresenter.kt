@@ -7,8 +7,7 @@ import javax.inject.Inject
 
 class MoviesPresenter @Inject constructor(
     private val useCase: MoviesUseCase,
-    private val subscriber: SchedulerProvider
-) :
+    private val subscriber: SchedulerProvider) :
     BasePresenter<MoviesContract.MoviesView>(), MoviesContract.MoviesPresenter {
 
     override fun getMovies() {

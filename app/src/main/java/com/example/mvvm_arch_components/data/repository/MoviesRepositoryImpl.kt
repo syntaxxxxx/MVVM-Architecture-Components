@@ -11,6 +11,7 @@ class MoviesRepositoryImpl @Inject constructor(private val routes: Routes) : Mov
      * @getErrorMovies() testing purpose
      * */
     override fun getMovies(): Flowable<ResponseMovies> = routes.getMovies()
+
     override fun getErrorMovies(): Flowable<ResponseMovies> = routes.getErrorMovies()
 
 }
