@@ -7,5 +7,7 @@ import dagger.Component
 @MoviesScope
 @Component(modules = [MoviesModule::class])
 interface MoviesComponent {
+
     fun inject(fragment: MoviesFragment)
+
 }
