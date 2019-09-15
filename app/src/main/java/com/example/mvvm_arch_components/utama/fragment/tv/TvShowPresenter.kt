@@ -3,16 +3,12 @@ package com.example.mvvm_arch_components.utama.fragment.tv
 import android.util.Log
 import com.example.mvvm_arch_components.base.BasePresenter
 import com.example.mvvm_arch_components.utils.rx.SchedulerProvider
+import javax.inject.Inject
 
-class TvShowPresenter(
-    view: TvShowContract.TvView,
+class TvShowPresenter @Inject constructor(
     private val useCase: TvShowUseCase,
     private val subsriber: SchedulerProvider
 ) : BasePresenter<TvShowContract.TvView>(), TvShowContract.TvPresenter {
-
-    init {
-        super.onAttachView(view)
-    }
 
     override fun getTv() {
         view().onShowLoading()

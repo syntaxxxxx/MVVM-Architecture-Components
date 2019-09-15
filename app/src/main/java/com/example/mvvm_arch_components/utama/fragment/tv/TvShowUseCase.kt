@@ -1,10 +1,11 @@
 package com.example.mvvm_arch_components.utama.fragment.tv
 
 import com.example.mvvm_arch_components.data.entity.ResponseTv
-import com.example.mvvm_arch_components.data.repository.TvRepositoryImpl
+import com.example.mvvm_arch_components.data.repository.TvRepository
 import io.reactivex.Flowable
+import javax.inject.Inject
 
-class TvShowUseCase(private val repositoryImpl: TvRepositoryImpl) {
+class TvShowUseCase @Inject constructor(private val repository: TvRepository) {
 
-    fun getTv() : Flowable<ResponseTv> = repositoryImpl.getTv()
+    fun getTv(): Flowable<ResponseTv> = repository.getTv()
 }

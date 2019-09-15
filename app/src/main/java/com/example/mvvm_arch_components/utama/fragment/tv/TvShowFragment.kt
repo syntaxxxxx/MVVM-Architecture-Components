@@ -1,31 +1,22 @@
 package com.example.mvvm_arch_components.utama.fragment.tv
 
-
 import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvm_arch_components.R
-import com.example.mvvm_arch_components.adapter.MoviesAdapter
 import com.example.mvvm_arch_components.adapter.TvAdapter
 import com.example.mvvm_arch_components.base.BaseFragment
 import com.example.mvvm_arch_components.data.entity.Tv
-import com.example.mvvm_arch_components.data.repository.TvRepositoryImpl
-import com.example.mvvm_arch_components.network.Network
-import com.example.mvvm_arch_components.utils.rx.AppSchedulerProvider
+import com.example.mvvm_arch_components.utama.fragment.tv.di.DaggerTvComponent
+import com.example.mvvm_arch_components.utama.fragment.tv.di.TvModule
 import kotlinx.android.synthetic.main.fragment_tv_show.*
-
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  *
  */
 class TvShowFragment : BaseFragment(), TvShowContract.TvView {
-    override fun initInjector() {
-    }
-
-    private val routes = Network.services()
-    private val repository = TvRepositoryImpl(routes)
-    private val useCase = TvShowUseCase(repository)
 
     private val dataTv = arrayListOf<Tv>()
 
@@ -34,13 +25,20 @@ class TvShowFragment : BaseFragment(), TvShowContract.TvView {
         TvAdapter(context(), dataTv)
     }
 
-//    override fun presenter(): TvShowPresenter = TvShowPresenter(this, useCase, AppSchedulerProvider())
+    @Inject lateinit var presenter: TvShowContract.TvPresenter
 
     override fun setContentView(): Int = R.layout.fragment_tv_show
 
     override fun onCreated() {
-//        presenter().onAttachView(this)
-//        presenter().getTv()
+        presenter.onAttachView(this)
+        presenter.getTv()
+    }
+
+    override fun initInjector() {
+        DaggerTvComponent.builder()
+            .tvModule(TvModule())
+            .build()
+            .inject(this)
     }
 
     @SuppressLint("WrongConstant")
@@ -51,5 +49,10 @@ class TvShowFragment : BaseFragment(), TvShowContract.TvView {
         dataTv.addAll(data)
         adapter.notifyDataSetChanged()
         rv_tv.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.onDettachView()
     }
 }

@@ -26,8 +26,7 @@ class MoviesFragment : BaseFragment(), MoviesContract.MoviesView {
         MoviesAdapter(context(), moviesData)
     }
 
-    @Inject
-    lateinit var presenter: MoviesContract.MoviesPresenter
+    @Inject lateinit var presenter: MoviesContract.MoviesPresenter
 
     override fun setContentView(): Int = R.layout.fragment_movies
 
@@ -53,8 +52,8 @@ class MoviesFragment : BaseFragment(), MoviesContract.MoviesView {
         rv_movies.adapter = adapter
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onAttachView(this)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.onDettachView()
     }
 }
