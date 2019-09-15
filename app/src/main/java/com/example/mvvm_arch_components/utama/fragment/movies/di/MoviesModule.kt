@@ -31,5 +31,5 @@ class MoviesModule {
     @MoviesScope
     @Provides
     fun providePresenter(useCase: MoviesUseCase, schedulerProvider: SchedulerProvider): MoviesContract.MoviesPresenter =
-        MoviesPresenter(useCase, schedulerProvider)
+    MoviesPresenter(useCase, schedulerProvider)
 }
