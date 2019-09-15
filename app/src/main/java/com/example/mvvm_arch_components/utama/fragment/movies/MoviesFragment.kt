@@ -26,7 +26,8 @@ class MoviesFragment : BaseFragment(), MoviesContract.MoviesView {
         MoviesAdapter(context(), moviesData)
     }
 
-    @Inject lateinit var presenter: MoviesContract.MoviesPresenter
+    @Inject
+    lateinit var presenter: MoviesContract.MoviesPresenter
 
     override fun setContentView(): Int = R.layout.fragment_movies
 
