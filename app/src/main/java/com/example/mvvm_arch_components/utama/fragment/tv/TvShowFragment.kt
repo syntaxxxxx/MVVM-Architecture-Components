@@ -19,7 +19,9 @@ import kotlinx.android.synthetic.main.fragment_tv_show.*
  * A simple [Fragment] subclass.
  *
  */
-class TvShowFragment : BaseFragment<TvShowPresenter>(), TvShowContract.TvView {
+class TvShowFragment : BaseFragment(), TvShowContract.TvView {
+    override fun initInjector() {
+    }
 
     private val routes = Network.services()
     private val repository = TvRepositoryImpl(routes)
@@ -32,13 +34,13 @@ class TvShowFragment : BaseFragment<TvShowPresenter>(), TvShowContract.TvView {
         TvAdapter(context(), dataTv)
     }
 
-    override fun presenter(): TvShowPresenter = TvShowPresenter(this, useCase, AppSchedulerProvider())
+//    override fun presenter(): TvShowPresenter = TvShowPresenter(this, useCase, AppSchedulerProvider())
 
     override fun setContentView(): Int = R.layout.fragment_tv_show
 
     override fun onCreated() {
-        presenter().onAttachView(this)
-        presenter().getTv()
+//        presenter().onAttachView(this)
+//        presenter().getTv()
     }
 
     @SuppressLint("WrongConstant")

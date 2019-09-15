@@ -7,21 +7,17 @@ import com.example.mvvm_arch_components.R
 import com.example.mvvm_arch_components.adapter.MoviesAdapter
 import com.example.mvvm_arch_components.base.BaseFragment
 import com.example.mvvm_arch_components.data.entity.Movies
-import com.example.mvvm_arch_components.data.repository.MoviesRepositoryImpl
-import com.example.mvvm_arch_components.network.Network
-import com.example.mvvm_arch_components.utils.rx.AppSchedulerProvider
+import com.example.mvvm_arch_components.utama.fragment.movies.di.DaggerMoviesComponent
+import com.example.mvvm_arch_components.utama.fragment.movies.di.MoviesModule
 import kotlinx.android.synthetic.main.fragment_movies.*
+import javax.inject.Inject
 
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class MoviesFragment : BaseFragment<MoviesPresenter>(), MoviesContract.MoviesView {
-
-    private val routes = Network.services()
-    private val repository = MoviesRepositoryImpl(routes)
-    private val useCase = MoviesUseCase(repository)
+class MoviesFragment : BaseFragment(), MoviesContract.MoviesView {
 
     private val moviesData = arrayListOf<Movies>()
 
@@ -30,13 +26,20 @@ class MoviesFragment : BaseFragment<MoviesPresenter>(), MoviesContract.MoviesVie
         MoviesAdapter(context(), moviesData)
     }
 
-    override fun presenter(): MoviesPresenter = MoviesPresenter(this, useCase, AppSchedulerProvider())
+    @Inject lateinit var presenter: MoviesContract.MoviesPresenter
 
     override fun setContentView(): Int = R.layout.fragment_movies
 
     override fun onCreated() {
-        presenter().onAttachView(this)
-        presenter().getMovies()
+        presenter.onAttachView(this)
+        presenter.getMovies()
+    }
+
+    override fun initInjector() {
+        DaggerMoviesComponent.builder()
+            .moviesModule(MoviesModule())
+            .build()
+            .inject(this)
     }
 
     @SuppressLint("WrongConstant")
@@ -47,5 +50,10 @@ class MoviesFragment : BaseFragment<MoviesPresenter>(), MoviesContract.MoviesVie
         moviesData.addAll(data)
         adapter.notifyDataSetChanged()
         rv_movies.adapter = adapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onAttachView(this)
     }
 }

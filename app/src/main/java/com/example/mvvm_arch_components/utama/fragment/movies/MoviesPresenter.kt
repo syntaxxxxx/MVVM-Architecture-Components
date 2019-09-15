@@ -3,17 +3,13 @@ package com.example.mvvm_arch_components.utama.fragment.movies
 import android.util.Log
 import com.example.mvvm_arch_components.base.BasePresenter
 import com.example.mvvm_arch_components.utils.rx.SchedulerProvider
+import javax.inject.Inject
 
-class MoviesPresenter(
-    view: MoviesContract.MoviesView,
+class MoviesPresenter @Inject constructor(
     private val useCase: MoviesUseCase,
     private val subscriber: SchedulerProvider
 ) :
     BasePresenter<MoviesContract.MoviesView>(), MoviesContract.MoviesPresenter {
-
-    init {
-        super.onAttachView(view)
-    }
 
     override fun getMovies() {
         view().onShowLoading()
