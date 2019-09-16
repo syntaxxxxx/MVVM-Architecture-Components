@@ -5,13 +5,8 @@ import com.example.mvvm_arch_components.base.BasePresenter
 import com.example.mvvm_arch_components.data.entity.Movies
 
 class DetailPresenter(
-    view: DetailContract.DetailView,
     private val useCase: DetailUseCase
 ) : BasePresenter<DetailContract.DetailView>(), DetailContract.DetailPresenter {
-
-    init {
-        super.onAttachView(view)
-    }
 
     override fun like(context: Context, movies: Movies) {
         useCase.like(context, movies)

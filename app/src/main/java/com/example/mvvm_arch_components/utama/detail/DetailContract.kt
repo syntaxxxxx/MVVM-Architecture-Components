@@ -7,7 +7,7 @@ import com.example.mvvm_arch_components.data.entity.Movies
 
 interface DetailContract {
 
-    interface DetailPresenter {
+    interface DetailPresenter : BaseContract.BasePresenter<DetailView>{
         fun like(context: Context, movies: Movies)
 
         fun unlike(context: Context, idMovies: String)

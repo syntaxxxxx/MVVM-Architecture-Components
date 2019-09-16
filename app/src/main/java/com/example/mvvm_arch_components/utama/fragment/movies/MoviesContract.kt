@@ -5,7 +5,7 @@ import com.example.mvvm_arch_components.data.entity.Movies
 
 interface MoviesContract {
 
-    interface MoviesPresenter{
+    interface MoviesPresenter : BaseContract.BasePresenter<MoviesView>{
         fun getMovies()
     }
 

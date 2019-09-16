@@ -12,32 +12,32 @@ import com.example.mvvm_arch_components.data.repository.LocalRepositoryImpl
 import com.example.mvvm_arch_components.utils.view.displayImageOriginal
 import kotlinx.android.synthetic.main.activity_detail_movies.*
 
-class Detail : BaseActivity<DetailPresenter>(), DetailContract.DetailView {
-
-    private val repository = LocalRepositoryImpl()
-    private val useCase = DetailUseCase(repository)
-    override fun presenter(): DetailPresenter = DetailPresenter(this, useCase)
-
-    override fun setContentView(): Int = R.layout.activity_detail_movies
+class Detail : BaseActivity(), DetailContract.DetailView {
 
     private var isFavorite: Boolean = false
     private var menuItem: Menu? = null
 
     lateinit var movies: Movies
 
+    lateinit var presenter: DetailContract.DetailPresenter
+
+    override fun setContentView(): Int = R.layout.activity_detail_movies
+
     override fun onCreated() {
         movies = intent.getParcelableExtra("movies") as Movies
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        presenter().onAttachView(this)
 
-        presenter().favState(this, movies.id)
-
+        val repository = LocalRepositoryImpl()
+        val useCase = DetailUseCase(repository)
+        presenter = DetailPresenter(useCase)
+        presenter.onAttachView(this)
+        presenter.favState(this, movies.id)
         initData()
     }
 
     private fun initData() {
-        displayImageOriginal(this, iv_poster_detail, BuildConfig.IMAGES + movies.posterPath )
+        displayImageOriginal(this, iv_poster_detail, BuildConfig.IMAGES + movies.posterPath)
         tv_title_detail.text = movies.title
         tv_popularity_detail.text = movies.popularity.toString()
         tv_release_detail.text = movies.releaseDate
@@ -63,11 +63,11 @@ class Detail : BaseActivity<DetailPresenter>(), DetailContract.DetailView {
             }
             R.id.fav -> {
                 if (isFavorite) {
-                    presenter().unlike(this, movies.id)
+                    presenter.unlike(this, movies.id)
                     isFavorite = !isFavorite
 
                 } else {
-                    presenter().like(this, movies)
+                    presenter.like(this, movies)
                     isFavorite = !isFavorite
                 }
                 setLike()
@@ -82,5 +82,15 @@ class Detail : BaseActivity<DetailPresenter>(), DetailContract.DetailView {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_star_black_24dp)
         else
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_star_border_black_24dp)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.onAttachView(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDettachView()
     }
 }

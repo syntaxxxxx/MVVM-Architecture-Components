@@ -17,11 +17,7 @@ import kotlinx.android.synthetic.main.fragment_movies.*
  * A simple [Fragment] subclass.
  *
  */
-class MoviesFragment : BaseFragment<MoviesPresenter>(), MoviesContract.MoviesView {
-
-    private val routes = Network.services()
-    private val repository = MoviesRepositoryImpl(routes)
-    private val useCase = MoviesUseCase(repository)
+class MoviesFragment : BaseFragment(), MoviesContract.MoviesView {
 
     private val moviesData = arrayListOf<Movies>()
 
@@ -30,13 +26,17 @@ class MoviesFragment : BaseFragment<MoviesPresenter>(), MoviesContract.MoviesVie
         MoviesAdapter(context(), moviesData)
     }
 
-    override fun presenter(): MoviesPresenter = MoviesPresenter(this, useCase, AppSchedulerProvider())
+    lateinit var presenter: MoviesContract.MoviesPresenter
 
     override fun setContentView(): Int = R.layout.fragment_movies
 
     override fun onCreated() {
-        presenter().onAttachView(this)
-        presenter().getMovies()
+        val routes = Network.services()
+        val repository = MoviesRepositoryImpl(routes)
+        val useCase = MoviesUseCase(repository)
+        presenter = MoviesPresenter(useCase, AppSchedulerProvider())
+        presenter.onAttachView(this)
+        presenter.getMovies()
     }
 
     @SuppressLint("WrongConstant")
@@ -47,5 +47,10 @@ class MoviesFragment : BaseFragment<MoviesPresenter>(), MoviesContract.MoviesVie
         moviesData.addAll(data)
         adapter.notifyDataSetChanged()
         rv_movies.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.onDettachView()
     }
 }

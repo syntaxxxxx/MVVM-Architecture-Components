@@ -5,7 +5,7 @@ import com.example.mvvm_arch_components.data.entity.Tv
 
 interface TvShowContract {
 
-    interface TvPresenter{
+    interface TvPresenter : BaseContract.BasePresenter<TvView>{
         fun getTv()
     }
 

@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvm_arch_components.R
-import com.example.mvvm_arch_components.adapter.MoviesAdapter
 import com.example.mvvm_arch_components.adapter.TvAdapter
 import com.example.mvvm_arch_components.base.BaseFragment
 import com.example.mvvm_arch_components.data.entity.Tv
@@ -19,11 +18,7 @@ import kotlinx.android.synthetic.main.fragment_tv_show.*
  * A simple [Fragment] subclass.
  *
  */
-class TvShowFragment : BaseFragment<TvShowPresenter>(), TvShowContract.TvView {
-
-    private val routes = Network.services()
-    private val repository = TvRepositoryImpl(routes)
-    private val useCase = TvShowUseCase(repository)
+class TvShowFragment : BaseFragment(), TvShowContract.TvView {
 
     private val dataTv = arrayListOf<Tv>()
 
@@ -32,13 +27,17 @@ class TvShowFragment : BaseFragment<TvShowPresenter>(), TvShowContract.TvView {
         TvAdapter(context(), dataTv)
     }
 
-    override fun presenter(): TvShowPresenter = TvShowPresenter(this, useCase, AppSchedulerProvider())
+    lateinit var presenter: TvShowContract.TvPresenter
 
     override fun setContentView(): Int = R.layout.fragment_tv_show
 
     override fun onCreated() {
-        presenter().onAttachView(this)
-        presenter().getTv()
+        val routes = Network.services()
+        val repository = TvRepositoryImpl(routes)
+        val useCase = TvShowUseCase(repository)
+        presenter = TvShowPresenter(useCase, AppSchedulerProvider())
+        presenter.onAttachView(this)
+        presenter.getTv()
     }
 
     @SuppressLint("WrongConstant")
@@ -49,5 +48,10 @@ class TvShowFragment : BaseFragment<TvShowPresenter>(), TvShowContract.TvView {
         dataTv.addAll(data)
         adapter.notifyDataSetChanged()
         rv_tv.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.onDettachView()
     }
 }
