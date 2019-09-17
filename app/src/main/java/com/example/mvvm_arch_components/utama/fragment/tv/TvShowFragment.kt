@@ -45,9 +45,7 @@ class TvShowFragment : BaseFragment(), TvShowContract.TvView {
     override fun onShowTv(data: List<Tv>) {
         rv_tv.setHasFixedSize(true)
         rv_tv.layoutManager = LinearLayoutManager(context(), LinearLayoutManager.VERTICAL, false)
-        dataTv.clear()
-        dataTv.addAll(data)
-        adapter.notifyDataSetChanged()
+        adapter.updateData(data)
         rv_tv.adapter = adapter
     }
 

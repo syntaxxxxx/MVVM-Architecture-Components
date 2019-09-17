@@ -46,9 +46,7 @@ class MoviesFragment : BaseFragment(), MoviesContract.MoviesView {
     override fun onShowMovies(data: List<Movies>) {
         rv_movies.setHasFixedSize(true)
         rv_movies.layoutManager = LinearLayoutManager(context(), LinearLayoutManager.VERTICAL, false)
-        moviesData.clear()
-        moviesData.addAll(data)
-        adapter.notifyDataSetChanged()
+        adapter.updateData(data)
         rv_movies.adapter = adapter
     }
 
