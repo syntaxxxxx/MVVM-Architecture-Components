@@ -7,21 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_arch_components.BuildConfig
 import com.example.mvvm_arch_components.R
+import com.example.mvvm_arch_components.base.view.BaseDiffCallback
 import com.example.mvvm_arch_components.data.entity.Movies
 import com.example.mvvm_arch_components.utama.detail.DetailMovies
-import com.example.mvvm_arch_components.utils.view.displayImageOriginal
-import com.example.mvvm_arch_components.utils.view.inflate
-import com.example.mvvm_arch_components.utils.view.onClicked
+import com.example.mvvm_arch_components.utils.view.*
 import kotlinx.android.synthetic.main.item_movies.view.*
 import org.jetbrains.anko.startActivity
-
-
 
 class MoviesAdapter(private val context: Context? = null, private val list: ArrayList<Movies>) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     fun updateData(dataMovies: List<Movies>) {
-        val diffResult = DiffUtil.calculateDiff(MoviesDiffCallback(dataMovies, list))
+        val diffResult = DiffUtil.calculateDiff(BaseDiffCallback(dataMovies, list))
         this.list.clear()
         this.list.addAll(dataMovies)
         diffResult.dispatchUpdatesTo(this)

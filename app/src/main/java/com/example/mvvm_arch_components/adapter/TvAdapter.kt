@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_arch_components.BuildConfig
 import com.example.mvvm_arch_components.R
+import com.example.mvvm_arch_components.base.view.BaseDiffCallback
 import com.example.mvvm_arch_components.data.entity.Tv
 import com.example.mvvm_arch_components.utils.view.displayImageOriginal
 import com.example.mvvm_arch_components.utils.view.inflate
@@ -17,7 +18,7 @@ class TvAdapter(private val context: Context? = null, private val list: ArrayLis
     RecyclerView.Adapter<TvAdapter.ViewHolder>() {
 
     fun updateData(dataTv: List<Tv>) {
-        val diffResult = DiffUtil.calculateDiff(TvDiffCallback(dataTv, list))
+        val diffResult = DiffUtil.calculateDiff(BaseDiffCallback(dataTv, list))
         this.list.clear()
         this.list.addAll(dataTv)
         diffResult.dispatchUpdatesTo(this)
